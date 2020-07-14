@@ -72,13 +72,13 @@
                   <!-- /.row -->
 
                   <!-- Related Projects Row -->
-                  <h3 class="my-4">Related Projects</h3>
+                  <h3 class="my-4">Programmi correlati</h3>
 
                   <div class="row">
                       
                       <#list related as prog>
                         <div class="col-md-3 col-sm-6 mb-4">
-                            <a href="#">
+                            <a href="${base_path}/programma?p_key=${prog.key}">
                                 <img class="img-fluid" src="${prog.linkRefImg}" alt="Immagine Programma">
                             </a>
                         </div>

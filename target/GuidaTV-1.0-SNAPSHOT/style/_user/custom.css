@@ -179,7 +179,11 @@ and open the template in the editor.
 
 .p_program li a {
     color: black;
-    font-weight: bold !important;
+}
+
+.p_program li a:hover {
+    color: #f4952f;
+    text-decoration: underline;
 }
 
 .p_program li .time {
@@ -238,15 +242,35 @@ and open the template in the editor.
     line-height: 1em;
     font-weight: 900;
     font-size: .650em;
-    border-radius: 7px;
     max-width: 90%;
     padding: .4em;
     width: auto;
     display: inline-block;
-    text-decoration: underline;
     text-transform: uppercase;
+    /*border: 1px solid #35ab20;*/
 }
 
+.classificazione_badge > span.bollino {
+
+    border-radius: 50%;
+    padding-left: .5em;
+    padding-right: .5em;
+    font-size: .75em;
+    /* height: 11px; */
+    width: 100px;
+    height: 100px;
+    /* line-height: 5px; */
+}
+
+.classificazione_badge > span.bollino_verde {
+    background-color: #35ab20;
+    color: white;
+}
+
+.program-details > span {
+    font-family: AvenirNextCondensed-Medium,Futura-CondensedMedium,HelveticaNeue-Thin,"Ubuntu Condensed","Liberation Sans Narrow","Franklin Gothic Demi Cond","Arial Narrow",sans-serif-condensed,Arial,"Trebuchet MS","Lucida Grande",Tahoma,Verdana,sans-serif;
+    font-stretch: condensed;
+}
 /*
 .program_small .classificazione_badge {
     opacity: 0;
