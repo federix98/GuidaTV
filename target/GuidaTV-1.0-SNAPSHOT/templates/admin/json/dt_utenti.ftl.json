@@ -1,0 +1,19 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list utenti as utente>
+        [
+            "<div>${utente.key}</div>",
+            "<div>${utente.username}</div>",
+            "<div><span class=\"email badge badge-pill badge-light\">${utente.email}</span></div>",
+            "<div>${utente.dataNascita}</div>",
+            "<div><#if utente.sendEmail ><span class=\"badge badge-success\">SI</span><#else><span class=\"badge badge-danger\">NO</span></#if></div>",
+            "<div>${utente.ruolo.nome}</div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

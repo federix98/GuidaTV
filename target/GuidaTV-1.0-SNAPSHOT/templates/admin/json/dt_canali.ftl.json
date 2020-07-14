@@ -1,0 +1,17 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list canali as canale>
+        [
+            "<div>${canale.key}</div>",
+            "<div>${canale.nome}</div>",
+            "<div>${canale.numero}</div>",
+            "<div class='link img_link'><a class='prog_img_link' href='${base_path}/${canale.logoRef!'Undefined'}'>${canale.logoRef!'Undefined'}</a><img class='fade_img' src='${base_path}/${canale.logoRef!'img/undefined.jpg'}' alt='prog img'/></div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

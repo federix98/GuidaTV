@@ -1,0 +1,16 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list generi as genere>
+        [
+            "<div>${genere.key}</div>",
+            "<div>${genere.nome}</div>",
+            "<div>${genere.descrizione}</div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

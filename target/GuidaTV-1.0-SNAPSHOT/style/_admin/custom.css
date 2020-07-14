@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17 giu 2020, 19:17:58
+    Author     : Federico Di Menna
+*/
+
+.dataTable {
+    max-width: 100px !important; 
+    font-size: .8em !important;
+}
+
+.dataTable td > div {
+    max-height: 10em;
+    overflow: hidden;
+}
+
+.dataTable td > div.link {
+    max-width: 12em;
+    overflow: visible;
+}
+
+.dataTable td > div.name {
+    min-width: 10em;
+    overflow: auto;
+}
+
+.img_link {
+    position: relative;
+}
+
+.prog_img_link {
+    
+}
+
+.small_img {
+    max-height: 200px;
+    max-width: 200px;
+    padding: 1em;
+}
+
+.fade_img {
+    position: absolute;
+    top: 0;
+    height: 0;
+    left: 11em;
+    z-index: 100;
+    border-radius: 5px;
+    opacity: 0;
+    max-height: 200px;
+    max-width: 200px;
+    overflow: hidden;
+    -webkit-transition: all .6s ease-in-out;
+    -moz-transition:    all .6s ease-in-out;
+    -o-transition:      all .6s ease-in-out;
+    -ms-transition:     all .6s ease-in-out;
+    transition:         all .6s ease-in-out;
+    
+    
+}
+
+.img_link:hover > .prog_img_link:hover + .fade_img {
+    height: auto;
+    opacity: 100%;
+    display: block;
+    padding: .5em;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.email {
+    font-size: 1em;
+}
+
+#forErrors {
+    text-transform: uppercase;
+}

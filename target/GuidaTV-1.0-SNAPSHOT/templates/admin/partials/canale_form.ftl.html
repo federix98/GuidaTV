@@ -1,0 +1,40 @@
+<form id="storeForm" method="post" class="form-horizontal" enctype="multipart/form-data" accept-charset="UTF-8">
+    <div class="modal-header">						
+        <h4 class="modal-title"><#if item??>Aggiorna<#else>Inserisci</#if> Canale</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+    </div>
+    <div class="modal-body">
+        <#if item??>
+        <input type="hidden" value="${item.key}" name="key"/>
+        </#if>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" required="required" name="nome" id="editNome" value='${(item.nome)!""}'/>
+        </div>
+        <div class="form-group">
+            <label>Numero</label>
+            <input type="number" class="form-control" required="required" name="numero" id="editNumero" value="${(item.numero)!''}"/>
+        </div>
+        <div class="form-group mb-3">
+            <label>Logo Canale</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="image" id="prog_img">
+                <label class="custom-file-label" for="prog_img"><#if item??>Cambia Logo<#else>Inserisci Logo</#if></label>
+            </div>
+            <#if item??>
+                <#if item.logoRef??>
+                <img class="small_img" src="${base_path}/${item.logoRef}" alt="immagine_programma">
+                <#else>
+                No Image
+                </#if>
+            </#if>
+        </div>
+        
+        <div id="forErrors" class="d-none alert alert-danger" role="alert">${errors!""}</div>				
+    </div>
+
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-success" value="<#if item??>Aggiorna<#else>Inserisci</#if>">
+    </div>
+</form>

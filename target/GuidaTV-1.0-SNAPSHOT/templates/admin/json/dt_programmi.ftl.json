@@ -1,0 +1,24 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list programmi as prog>
+        [
+            "<div>${prog.key?json_string}</div>",
+            "<div class='name'>${prog.nome?json_string}</div>",
+            "<div>${prog.descrizione?json_string}</div>",
+            "<div class='link img_link'><a class='prog_img_link' href='${base_path}/${prog.linkRefImg!'#'?json_string}'>${prog.linkRefImg!'Undefined'?json_string}</a><img class='fade_img' src='${base_path}/${prog.linkRefImg!'img/undefined.jpg'?json_string}' alt='prog img'/></div>",
+            "<div class='link'><a href='${prog.linkRefDetails}' target='_blank'>${prog.linkRefDetails}</a></div>",
+            "<div><#if prog.idSerie != 0 ><span class=\"badge badge-success\">SI (#${prog.idSerie})</span><#else><span class=\"badge badge-danger\">NO</span></#if></div>",
+            "<div>${prog.stagione?json_string}</div>",
+            "<div>${prog.episodio?json_string}</div>",
+            "<div>${prog.durata?json_string}</div>",
+            "<div>${prog.classificazione.nome?json_string}</div>",
+            "<div>${prog.genere.nome?json_string}</div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

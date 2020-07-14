@@ -1,0 +1,485 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 mag 2020, 11:32:13
+    Author     : Federico Di Menna
+*/
+
+
+/*
+    SHARED
+*/
+
+.signin__logo {
+    max-width: 10em;
+    display: inline-block;
+}
+
+.header__logo a {
+    max-width: 10em;
+}
+
+
+
+.div_small_channel {
+    /*max-width: 6em;
+    max-height: 6em;*/
+    transition: all .3s ease-in-out;
+    padding: 0;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.div_small_channel:hover {
+    border-color: #ddd;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0,0,0,.2);
+}
+
+.div_small_channel:hover .channel_name {
+    opacity: 100%;
+}
+
+.channel_img {
+    display: inline-block;
+    float: none;
+    margin-top: 10px;
+    width: 5em;
+    height: 5em;
+}
+
+.channel_img img {
+    display: block;
+    width: 90%;
+    height: 90%;
+    position: static;
+    max-width: 100%;
+    max-height: 100%;
+    transform: none;
+}
+
+.channel_name {
+    transition: all .5s ease-in-out;
+    display: block;
+    opacity: 0%;
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: normal;
+    color: #000;
+}
+
+
+.channel_container {
+    text-align: center;
+    position: relative;
+    top: 40%;
+}
+
+
+.icon {
+    max-width: 1em;
+    max-height: 1em;
+}
+
+.program_img_mini {
+    max-height: 6em;
+    width: 3em;
+}
+
+.program_img {
+    max-height: 10em;
+}
+
+.channel_img_mini {
+    max-height: 2em;
+    width: 2em;
+}
+
+.page_active {
+    background-color: #f4952f !important;
+    color: white !important;
+}
+
+.error {
+    color: red !important;
+    white-space: pre-line;
+}
+
+.current_item {
+    border-bottom: 1px solid #ddd;
+}
+
+/*
+    PALINSESTO
+*/
+
+.day_selector {
+    display: table;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.day_selector .week_days {
+    display: table-row;
+}
+
+.day_selector .week_days .day{
+    display: table-cell;
+    text-align: center;
+    width: 10%;
+}
+
+.day_selector .week_days .day .day_number a {
+    display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #575757;
+    background-color: #f7f8fa;
+    line-height: 50px;
+    font-weight: 700;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.day_selector .week_days .day.active .day_number a {
+    background-color: #f4952f;
+    color: #fff;
+    border: 0;
+}
+
+.day_selector .week_days .day_name {
+    color: #575757;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 300;
+    font-family: AvenirNextCondensed-Medium,Futura-CondensedMedium,HelveticaNeue-Thin,"Ubuntu Condensed","Liberation Sans Narrow","Franklin Gothic Demi Cond","Arial Narrow",sans-serif-condensed,Arial,"Trebuchet MS","Lucida Grande",Tahoma,Verdana,sans-serif;
+    font-stretch: condensed;
+}
+
+.p_program {
+    list-style: none;
+    font-size: 15px;
+    color: #444444;
+    line-height: 30px;
+    position: relative;
+}
+
+.custom_h3 {
+    font-size: 1.5em;
+}
+
+.p_program li a {
+    color: black;
+    font-weight: bold !important;
+}
+
+.p_program li .time {
+    margin-top: 1em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.p_program li .date {
+    font-size: .8em;
+    margin-top: 1em;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.detail_container {
+    min-height: 100%;
+    padding-bottom: 5em;
+}
+
+.about spad {
+    min-height: 100%;
+}
+
+.header__logo a {
+    max-width: 5em;
+}
+
+.time-selector {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    top: -1px;
+    /* z-index: 100; */
+    width: 100%;
+    /* height: auto; */
+    min-height: 5em;
+}
+
+.in_onda {
+    background-color: #d81400;
+    color: #fff;
+    line-height: 1em;
+    font-weight: 700;
+    font-size: .625em;
+    border-radius: 7px;
+    max-width: 90%;
+    padding: .4em;
+    width: auto;
+    display: inline-block;
+}
+
+.classificazione_badge {
+    color: #35ab20;
+    line-height: 1em;
+    font-weight: 900;
+    font-size: .650em;
+    border-radius: 7px;
+    max-width: 90%;
+    padding: .4em;
+    width: auto;
+    display: inline-block;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+/*
+.program_small .classificazione_badge {
+    opacity: 0;
+    font-size: .8em;
+    transition: all .5s ease-in-out; 
+}
+
+.program_small:hover .classificazione_badge {
+    opacity: 1;
+}*/
+
+.primary-btn {
+    background-color: white;
+}
+
+.program_divisor::before {
+    content: '';
+    display: block;
+    position: relative;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(0,0,0,.2);
+    background: -moz-linear-gradient(top,rgba(0,0,0,.2) 0,transparent 100%);
+    background: -webkit-gradient(left top,left bottom,color-stop(0,rgba(0,0,0,.2)),color-stop(100%,transparent));
+    background: -webkit-linear-gradient(top,rgba(0,0,0,.2) 0,transparent 100%);
+    background: -o-linear-gradient(top,rgba(0,0,0,.2) 0,transparent 100%);
+    background: -ms-linear-gradient(top,rgba(0,0,0,.2) 0,transparent 100%);
+    background: linear-gradient(to bottom,rgba(0,0,0,.2) 0,transparent 100%);
+}
+
+.program_divisor {
+    text-align: center;
+    background-color: #eee;
+    color: #575757;
+    border-bottom: 1px solid #ddd;
+}
+
+.fascia {
+    border: 1px solid #ddd;
+    transition: background-color .3s ease-in-out;
+    width: 25%;
+    float: left;
+    background-color: #f7f8fa;
+    padding: 10px 0;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    color: #575757 !important;
+}
+
+.fascia.active {
+    background-color: #fff;
+    border-bottom-color: #fff;
+    font-weight: 700;
+}
+
+.fascia:hover {
+    background-color: #eee;
+    outline: 0;
+}
+
+.item_custom:hover {
+    background-color: #eee;
+}
+
+.fascia_icon {
+    margin: 6px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
+.fascia_name {
+    color: #575757 !important;
+    letter-spacing: 1px;
+}
+
+.fascia.active .fascia_icon *{
+    color: #f4952f !important;
+    fill: #f4952f;
+}
+
+.fascia_ind {
+    color: #f4952f !important;
+    fill: #f4952f;
+}
+
+.time-selector-canale {
+    margin: 0;
+}
+
+.time-selector-canale .fascia {
+    width: 20%;
+}
+
+.time-selector-canale .program_small {
+    background: #eee6;
+    background-color: #eee3;
+}
+
+.program_small {
+    border-bottom: 1px solid #ddd;
+    padding: 1em;
+}
+
+.program_small:hover {
+    background-color: #eee7;
+}
+
+.program-details {
+    margin-left: 2em;
+}
+
+.no_program {
+    padding-top: 2em;
+    text-align: center;
+    background-color: #eee2;
+    color: #575757;
+    border-bottom: 1px solid #ddd;
+}
+
+.time-content {
+   text-align: center; 
+} 
+
+
+.canale_head {
+    background: transparent;
+}
+
+.post__meta {
+    position: relative !important;
+}
+
+.program_image {
+    overflow: hidden;
+    width: 30%;
+    height: auto;
+}
+
+.prog_img {
+    max-height: 15em;
+    position: relative;
+}
+
+.white_shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 18%, rgba(0,212,255,0) 28%);
+    background: -webkit-linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 18%, rgba(0,212,255,0) 28%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 18%, rgba(0,212,255,0) 28%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#00d4ff",GradientType=1);
+}
+/**
+    RICERCA
+
+    Non posso utilizzare display perchè non si puo animare
+**/
+
+._search {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.search_container {
+    margin-top: 2em;
+    position: relative;
+    right: 0;
+    background: white;
+    
+    padding: 0;
+    border: none;
+    opacity: 0;
+    
+    max-height: 0;
+    transition: all 0.15s ease-out;
+    overflow: hidden;
+}
+
+_search a:hover {
+    display: none !important;
+}
+
+._search a:hover + .search_container, .search_container:hover{
+    opacity: 1;
+    border: 0.1em solid #f4952f;
+    -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+    padding: 2em;
+    max-height: 100%;
+    transition: all 0.4s ease-in;
+}
+
+.icon_search_container {
+    text-align: center;
+    padding: 2em;
+}
+
+
+
+/**
+* PROFILE
+**/
+.contact__form form input[type="checkbox"], .contact__form form input[type="radio"] {
+    height: auto !important; 
+    width: auto !important; 
+}
+
+@media (min-width: 576px) {
+}
+
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+    
+}
+
+@media (min-width: 1200px) {
+}
+
+@media only screen and (min-width: 1200px) {
+    
+}
+
+
+
+

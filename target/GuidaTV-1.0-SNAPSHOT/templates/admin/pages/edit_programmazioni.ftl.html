@@ -1,0 +1,56 @@
+<span id="base_path" class="hidden" data-val="${base_path}"></span>
+<h2>Elenco Programmazioni</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <a href="#" class="btn btn-success mb-2 mt-2 addButton" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i> <span>Aggiungi Programmazione</span></a>				
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group d-flex justify-content-between">    
+            <input type="date" class="form-control dateTime align-self-center flex-fill w-auto" id="day" required="required" name="day" placeholder="yyyy-mm-dd" placeholder="yyyy/mm/dd" <#if day??>value="${day}"</#if>/>
+            <button id="filterDay" type="submit" class="btn btn-default align-self-center flex-fill p-2 m-2"><i class="fa fa-search mr-2"></i> Cerca giorno</button>
+        </div>
+    </div>
+</div>
+<div class="table-wrapper table-responsive">
+    <table id="programmazioniTable" class="table table-bordered table-hover mydata">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Programma</th>
+                <th>Canale</th>
+                <th>Inizia il ... alle ...</th>
+                <th>Durata (minuti)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#list programmazioni_admin as programmazione>
+            <tr>
+                <td>${programmazione.key}</td>
+                <td>#${programmazione.programma.key} : ${programmazione.programma.nome}</td>
+                <td>#${programmazione.canale.key} : ${programmazione.canale.nome}</td>
+                <td>${programmazione.startTime}</td>
+                <td>${programmazione.durata}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="${base_path}/admin/programmazioni?edit=true&data_id=${programmazione.key}" class="btn btn-warning _edit" data-id="${programmazione.key}"><i class="fas fa-pencil-alt" aria-hidden="true" data-toggle="tooltip" title="Edit"></i></a>
+                        <a href="${base_path}/admin/programmazioni?delete=true&data_id=${programmazione.key}" class="btn btn-danger _delete" data-id="${programmazione.key}"><i class="fas fa-trash" aria-hidden="true" data-toggle="tooltip" title="Delete"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </#list>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Programma</th>
+                <th>Canale</th>
+                <th>Inizia il ... alle ...</th>
+                <th>Durata (minuti)</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

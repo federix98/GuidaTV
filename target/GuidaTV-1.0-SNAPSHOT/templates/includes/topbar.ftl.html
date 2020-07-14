@@ -1,0 +1,54 @@
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                        <div class="header__humberger">
+                            <i class="fa fa-bars humberger__open"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                        <nav class="header__menu">
+                            <ul>
+                                <li <#if area == 1>class="active"</#if>><a href="${base_path}/">In onda adesso</a></li>
+                                <li <#if area == 2>class="active"</#if>><a href="palinsesto">Palinsesto</a></li>
+                                <#if logged>
+                                    <li class="dropdown <#if area == 3>active</#if>"><a href="#">Me</a>
+                                        <ul class="dropdown__menu">
+                                            <#if admin_session??><li><a href="${base_path}/admin/home">Admin Panel</a></li></#if>
+                                            <li><a href="${base_path}/profile">Profile</a></li>
+                                            <li><a href="${base_path}/logout">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                <#else>
+                                    <li><a href="${base_path}/login">Log In</a></li>
+                                    <li><a href="${base_path}/register">Register</a></li>
+                                </#if>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <#include "/includes/search_form.ftl.html">
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="header__logo">
+                        <a href="${base_path}/"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    

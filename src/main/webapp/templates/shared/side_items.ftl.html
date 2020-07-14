@@ -1,0 +1,52 @@
+<div class="sidebar__item">
+    
+    <!-- LATEST -->
+    <div class="sidebar__feature__item">
+        <div class="sidebar__item__title">
+            <h6>Programmazioni Recenti</h6>
+        </div>
+        
+        <div class="sidebar__feature__item__list">
+            <#list latest as item>
+            <div class="sidebar__feature__item__list__single">
+                <div class="post__meta">
+                    <h4>${item.getStartTimeFormatted('dd')}</h4>
+                    <span>${item.getStartTimeFormatted('LLL')}</span>
+                </div>
+                <div class="post__text">
+                    <span>${item.canale.nome}</span>
+                    <h5><a href="#">${item.programma.nome}</a></h5>
+                </div>
+            </div>
+            </#list>
+            
+        </div>
+    </div>
+    
+    <!-- BANNER DA AGGIUNGERE
+    <div class="sidebar__item__banner">
+        <img src="img/sidebar/banner.jpg" alt="">
+    </div>
+    -->
+    
+    <!-- LISTA CANALI-->
+    <div class="sidebar__item__categories">
+        <div class="sidebar__item__title">
+            <h6>Canali</h6>
+        </div>
+        <ul>
+            <#list canali as canale>
+                <li><a href="canale?c_key=${canale.key}">${canale.nome} <span>${canale.numero}</span></a></li>
+            </#list>
+        </ul>
+    </div>
+    
+    <!-- SUBSCRIBE SHORTCUT -->
+    <div class="sidebar__subscribe__item">
+        <div class="sidebar__item__title">
+            <h6>Subscribe</h6>
+        </div>
+        <p>Subscribe to our website and get our newest updates of your favourite channels right on your inbox.</p>
+        <a class="site-btn" href="register">Subscribe</a>
+    </div>
+</div>

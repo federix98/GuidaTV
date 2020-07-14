@@ -1,0 +1,45 @@
+<span id="base_path" class="hidden" data-val="${base_path}"></span>
+<h2>Gestione Classificazioni</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <a href="#" class="btn btn-success mb-2 mt-2 addButton" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true"></i> <span>Aggiungi Classificazione</span></a>				
+    </div>
+</div>
+<div class="table-wrapper table-responsive">
+    <table id="classificazioniTable" class="table table-bordered table-hover mydata">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrizione</th>
+                <th>MinAge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <#list classificazioni_admin as classificazione>
+            <tr>
+                <td>${classificazione.key}</td>
+                <td>${classificazione.nome}</td>
+                <td>${classificazione.descrizione}</td>
+                <td>${classificazione.minAge}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="${base_path}/admin/classificazioni?edit=true&data_id=${classificazione.key}" class="btn btn-warning _edit" data-id="${classificazione.key}"><i class="fas fa-pencil-alt" aria-hidden="true" data-toggle="tooltip" title="Edit"></i></a>
+                        <a href="${base_path}/admin/classificazioni?delete=true&data_id=${classificazione.key}" class="btn btn-danger _delete" data-id="${classificazione.key}"><i class="fas fa-trash" aria-hidden="true" data-toggle="tooltip" title="Delete"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </#list>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrizione</th>
+                <th>MinAge</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

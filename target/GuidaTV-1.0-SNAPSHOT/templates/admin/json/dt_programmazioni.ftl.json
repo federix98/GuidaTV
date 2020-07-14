@@ -1,0 +1,18 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list programmazioni as prog>
+        [
+            "<div>${prog.key}</div>",
+            "<div><a href='${base_path}/programma?p_key=${prog.programma.key}' target='_blank'>${prog.programma.nome}</a></div>",
+            "<div><a href='${base_path}/canale?c_key=${prog.canale.key}' target='_blank'>#${prog.canale.key}: ${prog.canale.nome}</a></div>",
+            "<div>${prog.getStartTimeFormatted('yyyy/MM/dd HH:mm:ss')}</div>",
+            "<div>${prog.durata}</div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

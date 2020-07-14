@@ -1,0 +1,145 @@
+
+    <!-- Categories Section Begin -->
+    <section class="categories categories-grid spad">
+        <div class="categories__post">
+            <div class="container">
+                <div class="categories__grid__post">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="breadcrumb__text">
+                                <h2>Palinsesto <span>${nome_fascia}</span></h2>
+                                <h3 class="custom_h3">Elenco dei programmi televisivi del ${day}</h3>
+                                
+                                <div class="breadcrumb__option">
+                                    <a href="${base_path}/">Home</a>
+                                    <span>Palinsesto</span>
+                                </div>
+                                
+                                <!-- WEEK DAY SELECTOR -->
+                                <div class="day_selector">
+                                    <div class="week_days">
+                                        <#list week as d>
+                                        <div class="day <#if day == d.toString()>active</#if>">
+                                            <div class="day_number">
+                                                <a href="${base_path}/palinsesto?day=${d.toString()}" title="${d.toString()}">${d.getDayOfMonth()}</a>
+                                            </div>
+                                            <div class="day_name">${d.getDayOfWeek()}</div>
+                                        </div>
+                                        </#list>
+                                    </div>
+                                </div>
+                                
+                                <!-- FASCIA ORARIA SELECTOR -->
+                                <div class="time-selector">
+                                    <a href="?day=${day}&fascia=1<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==1)>active</#if>" href="#">
+                                        <div class="fascia_icon">
+                                            <i class="fa fa-coffee" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="fascia_name">
+                                            Mattina
+                                        </div>
+                                    </a>
+                                    <a href="?day=${day}&fascia=2<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==2)>active</#if>" href="#">
+                                        <div class="fascia_icon">
+                                            <i class="fa fa-sun-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="fascia_name">
+                                            Pomeriggio
+                                        </div>
+                                    </a>
+                                    <a href="?day=${day}&fascia=3<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==3)>active</#if>" href="#">
+                                        <div class="fascia_icon">
+                                            <svg class="icon svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 17.45" role="img" fill="#666666">
+                                                <g>
+                                                    <path d="M0,16a1.46,1.46,0,0,1,1.47-1.45H30.53a1.45,1.45,0,1,1,0,2.91H1.47A1.45,1.45,0,0,1,0,16Z"></path>
+                                                    <path d="M25.27,8.79l2-2A1.45,1.45,0,1,0,25.25,4.7l-2,2a1.45,1.45,0,1,0,2.06,2.06Z"></path>
+                                                    <path d="M16,5.82a1.45,1.45,0,0,0,1.45-1.47V1.47a1.45,1.45,0,1,0-2.91,0V4.35A1.46,1.46,0,0,0,16,5.82Z"></path>
+                                                    <path d="M7.28,16h2.91a5.82,5.82,0,0,1,11.63,0h2.91A8.72,8.72,0,0,0,7.28,16Z"></path>
+                                                    <path d="M6.73,8.79A1.45,1.45,0,1,0,8.79,6.73l-2-2A1.45,1.45,0,1,0,4.7,6.75Z"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="fascia_name">
+                                            Sera
+                                        </div>
+                                    </a>
+                                    <a href="?day=${day}&fascia=4<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==4)>active</#if>" href="#">
+                                        <div class="fascia_icon">
+                                            <i class="fa fa-moon-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="fascia_name">
+                                            Notte
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            
+                            <#list palinsesto as canale, programmazioni>
+                            <div class="categories__list__post__item">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2">
+                                        <div class="categories__post__item__pic">
+                                            <div class="channel_logo">
+                                                <div class="div_small_channel">
+                                                    <a href="${base_path}/canale?c_key=${canale.key}">
+                                                        <span class="channel_img">
+                                                            <img class="small_channel" src="${base_path}/${canale.logoRef}" alt="${canale.nome} logo"/>
+                                                        </span>
+                                                        <span class="channel_name">${canale.nome}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10">
+                                        <div class="categories__post__item__text">
+                                            <span class="post__label"></span>
+                                            <h3><a href="${base_path}/canale?c_key=${canale.key}">${canale.nome}</a></h3>
+                                            <ul class="post__widget">
+                                                <li>Dalle ${start}</li>
+                                                <li>Alle ${end}</li>
+                                            </ul>
+                                            
+                                            <#include "shared/lista_programmi.ftl.html">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <#else>
+                                Nessuna programmazione sul database
+                            </#list>
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="categories__pagination">
+                                        <#list 1..(numero_pagine+1) as p>
+                                            <#if fascia??>
+                                            <a <#if (p-1) == pagina>class="page_active"</#if> href="?day=${day}&page=${p-1}&fascia=${fascia}">${p}</a>
+                                            <#else>
+                                            <a <#if (p-1) == pagina>class="page_active"</#if> href="?day=${day}&page=${p-1}">${p}</a>
+                                            </#if>
+                                        </#list>
+                                        <#if pagina < numero_pagine>
+                                            <#if fascia??>
+                                            <a href="?day=${day}&page=${pagina+1}&fascia=${fascia}">NEXT</a>
+                                            <#else>
+                                            <a href="?day=${day}&page=${pagina+1}">NEXT</a>
+                                            </#if>
+                                            
+                                        </#if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <#include "shared/side_items.ftl.html">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->

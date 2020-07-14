@@ -1,0 +1,75 @@
+<div class="_search">
+                            
+    <a href="#" class="primary-btn"><i class="fa fa-search search-switch"></i> Cerca nel sito</a>
+
+    <div class="search_container">
+        <h2><i class="fa fa-search mr-2"></i> Cerca i tuoi programmi preferiti</h2>
+        <p><small>La ricercha sar&agrave; effettuata sulla base di tutti parametri inseriti</small></p>
+        <form action="cerca" method="get">
+            <div class="form-group row">
+                <label for="searchNameInput" class="col-sm-2 col-form-label">Titolo</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="searchNameInput" placeholder="Titolo programma..." name="titolo" value="<#if titoloSearchValue??>${titoloSearchValue}</#if>">
+                    <small id="titleSearchHelp" class="form-text text-muted">Inserire almeno 5 caratteri per ricercare per titolo.</small>
+                </div>  
+            </div>
+            <div class="form-group row">
+              <label for="searchGenreInput" class="col-sm-2 col-form-label">Genere</label>
+              <div class="col-sm-8">
+                <select multiple="multiple" class="form-control" id="searchGenreInput" name="generi">
+                    <option <#if !(generiSearchValue?has_content) || generiSearchValue?seq_contains(0)>selected="selected"</#if> value="0"> Tutti i generi </option>
+                  <#list generi as genere>
+                  <option value="${genere.key}" <#if (generiSearchValue?? && generiSearchValue?seq_contains(genere.key))>selected="selected"</#if> > ${genere.nome} </option>
+                  </#list>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="searchChannelInput" class="col-sm-2 col-form-label">Canale</label>
+                <div class="col-sm-8">
+                    <select multiple="multiple" class="form-control" id="searchChannelInput" name="canali">
+                       <option <#if !(canaliSearchValue?has_content) || canaliSearchValue?seq_contains(0)>selected="selected"</#if> value="0"> Tutti i canali </option>
+                      <#list canali as canale>
+                          <option value="${canale.key}" <#if (canaliSearchValue?? && canaliSearchValue?seq_contains(canale.key))>selected="selected"</#if> > ${canale.nome} </option>
+                      </#list>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="searchTimeMinInput" class="col-sm-2 col-md-3 col-form-label">Ora di inizio minima</label>
+                <div class="col-sm-8 col-md-3">
+                    <input type="time" id="searchTimeMinInput" name="start_time_min" min="00:00" max="23:59" value="<#if startMinSearchValue??>${startMinSearchValue}</#if>">
+                </div>
+            
+                <label for="searchTimeMaxInput" class="col-sm-2 col-md-3 col-form-label">Ora di fine massima</label>
+                <div class="col-sm-8 col-md-3">
+                    <input type="time" id="searchTimeMaxInput" name="start_time_max" min="00:00" max="23:59" value="<#if startMaxSearchValue??>${startMaxSearchValue}</#if>">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="searchDateMinInput" class="col-sm-2 col-md-2 col-form-label">Dal</label>
+                <div class="col-sm-8 col-md-4">
+                    <input class="ml-2" type="date" id="searchDateMinInput" name="date_min" min="${min_date}" max="${max_date}" value="<#if dateMinSearchValue??>${dateMinSearchValue}</#if>">
+                </div>
+                
+                <label for="searchDateMaxInput" class="col-sm-2 col-md-2 col-form-label">Al</label>
+                <div class="col-sm-8 col-md-4">
+                    <input class="ml-2" type="date" id="searchDateMaxInput" name="date_max" min="${min_date}" max="${max_date}" value="<#if dateMaxSearchValue??>${dateMaxSearchValue}</#if>">
+                </div>
+            </div>
+            <#if logged>
+            <div class="form-group">
+                <label for="sign-agree-check">
+                    <input type="checkbox" name="save" value="1">
+                    <span class="checkmark"></span>
+                    Salva i risultati della mia ricerca per l'email giornaliera
+                </label>
+            </div>
+            </#if>
+
+            <button type="submit" class="site-btn"><i class="fa fa-search mr-2"></i> Cerca</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+    "draw" : ${draw},
+    "recordsTotal" : ${total},
+    "recordsFiltered" : ${total},
+    "data" : 
+    [
+        <#list classificazioni as classificazione>
+        [
+            "<div>${classificazione.key?j_string}</div>",
+            "<div>${classificazione.nome?j_string}</div>",
+            "<div>${classificazione.descrizione?j_string}</div>",
+            "<div>${classificazione.minAge?j_string}</div>"
+        ]
+        <#sep>,</#sep>
+        </#list>
+    ]
+}

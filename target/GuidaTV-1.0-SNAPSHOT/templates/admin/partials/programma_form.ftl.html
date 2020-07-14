@@ -1,0 +1,91 @@
+<form id="storeForm" method="post" class="form-horizontal" enctype="multipart/form-data" accept-charset="UTF-8">
+    <div class="modal-header">						
+        <h4 class="modal-title"><#if item??>Aggiorna<#else>Inserisci</#if> Programma</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+    </div>
+    <div class="modal-body">
+        <#if item??>
+        <input type="hidden" value="${item.key}" name="key"/>
+        </#if>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" required="required" name="nome" id="editNome" value='${(item.nome)!""}'/>
+        </div>
+        <div class="form-group">
+            <label>Descrizione</label>
+            <textarea class="form-control" name="descrizione" id="editDescrizione">${(item.descrizione)!''}</textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label>Immagine Programma</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="image" id="prog_img">
+                <label class="custom-file-label" for="prog_img"><#if item??>Cambia Immagine<#else>Inserisci Immagine</#if></label>
+            </div>
+            <#if item??>
+                <#if item.linkRefImg??>
+                <img class="small_img" src="${base_path}/${item.linkRefImg}" alt="immagine_programma">
+                <#else>
+                No Image
+                </#if>
+            </#if>
+        </div>
+        <div class="form-group">
+            <label>Durata (min)</label>
+            <input type="text" class="form-control" required="required" name="durata" id="editDurata" value="${(item.durata)!'0'}"/>
+        </div>
+        <div class="form-group">
+            <label>Link Esterno</label>
+            <input type="text" class="form-control" required="required" name="linkExt" id="editLink" value="${(item.linkRefDetails)!''}"/>
+        </div>
+        <div class="form-group">
+            <label>Rif Serie</label> <br/>
+            <small>Selezione la serie a cui fa riferimento la puntata, oppure seleziona 'Nessuno' se il programma non &egrave; una serie</small>
+            <select class="custom-select text-uppercase" name="idSerie" id="editSerie">
+                <option class="text-uppercase" value="0">Nessuno</option>
+                <option class="text-uppercase" value="-1">-- QUESTO PROGRAMMA --</option>
+                <#list series as serie>
+                <option class="text-uppercase" value="${serie.key}">${serie.nome}</option>
+                </#list>
+            </select>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="sel" name="serie_image" id="s_image">
+                <label class="form-check-label" for="s_image">
+                  Utilizza l'immagine della serie
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Stagione</label>
+            <input type="number" class="form-control" required="required" name="stagione" id="editStagione" value="${(item.stagione)!'0'}"/>
+        </div>
+        <div class="form-group">
+            <label>Episodio</label>
+            <input type="number" class="form-control" required="required" name="episodio" id="editEpisodio" value="${(item.episodio)!'0'}"/>
+        </div>
+        <div class="form-group">
+            <label>Genere</label> <br/>
+            <small>Selezione il genere del programma</small>
+            <select class="custom-select text-uppercase" name="genere" id="editGenere">
+                <#list generi as genere>
+                <option class="text-uppercase" value="${genere.key}" <#if item??><#if item.genere.key == genere.key>selected="selected"</#if></#if> >${genere.nome}</option>
+                </#list>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Classificazioni</label> <br/>
+            <small>Selezione la classificazione del programma</small>
+            <select class="custom-select text-uppercase" name="classificazione" id="editClassificazione">
+                <#list classificazioni as clas>
+                <option class="text-uppercase" value="${clas.key}" <#if item??><#if item.classificazione.key == clas.key>selected="selected"</#if></#if> >${clas.nome}</option>
+                </#list>
+            </select>
+        </div>
+        
+        <div id="forErrors" class="d-none alert alert-danger" role="alert">${errors!""}</div>					
+    </div>
+
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-success" value="<#if item??>Aggiorna<#else>Inserisci</#if>">
+    </div>
+</form>

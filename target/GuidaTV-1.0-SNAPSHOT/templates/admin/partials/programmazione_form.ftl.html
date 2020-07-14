@@ -1,0 +1,43 @@
+<form id="storeForm" method="post" class="form-horizontal" accept-charset="UTF-8">
+    <div class="modal-header">						
+        <h4 class="modal-title"><#if item??>Aggiorna<#else>Inserisci</#if> Programmazione</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+    </div>
+    <div class="modal-body">
+        <#if item??>
+        <input type="hidden" value="${item.key}" name="key"/>
+        </#if>
+        <div class="form-group">
+            <label>Canale</label> <br/>
+            <small>Selezione il canale</small>
+            <select class="custom-select text-uppercase" name="canale" id="editCanale">
+                <#list canali as canale>
+                <option class="text-uppercase" value="${canale.key}" <#if item??><#if item.canale?? && (item.canale.key == canale.key)>selected="selected"</#if></#if> >${canale.numero} - ${canale.nome}</option>
+                </#list>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Programma</label> <br/>
+            <small>Selezione il programma</small>
+            <select class="custom-select text-uppercase" name="programma" id="editProgramma">
+                <#list programmi?sort_by("nome") as programma>
+                <option class="text-uppercase" value="${programma.key}" <#if item??><#if item.programma?? && (item.programma.key == programma.key)>selected="selected"</#if></#if> >${programma.nome} <#if programma.idSerie != 0>(S ${programma.stagione} E ${programma.episodio})</#if></option>
+                </#list>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Durata (minuti)</label>
+            <input type="number" class="form-control" required="required" name="durata" id="editDurata" value='${(item.durata)!""}'/>
+        </div>
+        <div class="form-group">
+            <label>Start Time</label>
+            <input type="text" class="form-control dateTime" required="required" name="start" id="editStartTime" value="${(item.getStartTimeFormatted('yyyy/MM/dd HH:mm:ss'))!''}"/>
+        </div>
+        <div id="forErrors" class="d-none alert alert-danger" role="alert">${errors!""}</div>					
+    </div>
+
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-success" value="<#if item??>Aggiorna<#else>Inserisci</#if>">
+    </div>
+</form>
