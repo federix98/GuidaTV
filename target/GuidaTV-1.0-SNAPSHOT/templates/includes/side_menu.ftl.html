@@ -6,49 +6,28 @@
     <!-- SIDEBAR!!!!!! -->
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/humberger/humberger-logo.png" alt=""></a>
+            <a href="#"><img class="side_logo" src="img/logo.png" alt="Site logo"></a>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Palinsesto</a></li>
-                <li class="dropdown"><a href="#">About</a>
-                    <ul class="dropdown__menu">
-                        <li><a href="./categories-grid.html">FAQ</a></li>
-                        <li><a href="./categories-list.html">Chi Siamo</a></li>
-                    </ul>
-                </li>
+                <li <#if area == 1>class="active"</#if>><a href="${base_path}/">In onda adesso</a></li>
+                <li <#if area == 2>class="active"</#if>><a href="palinsesto">Palinsesto</a></li>
+                <#if logged>
+                    <li class="dropdown <#if area == 3>active</#if>"><a href="#">Me</a>
+                        <ul class="dropdown__menu">
+                            <#if admin_session??><li><a href="${base_path}/admin/home">Admin Panel</a></li></#if>
+                            <li><a href="${base_path}/profile">Profile</a></li>
+                            <li><a href="${base_path}/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                <#else>
+                    <li><a href="${base_path}/login">Log In</a></li>
+                    <li><a href="${base_path}/register">Register</a></li>
+                </#if>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <div class="humberger__menu__about">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>About me</h6>
-            </div>
-            <h6>GuidaTV Online</h6>
-            <p>Cerca i tuoi programmi preferiti.</p>
-            <div class="humberger__menu__about__social sidebar__item__follow__links">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-envelope-o"></i></a>
-            </div>
-        </div>
-        <div class="humberger__menu__subscribe">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>Subscribe</h6>
-            </div>
-            <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
-            <form action="#">
-                <input type="text" class="email-input" placeholder="Your email">
-                <label for="agree-check">
-                    I agree to the terms & conditions
-                    <input type="checkbox" id="agree-check">
-                    <span class="checkmark"></span>
-                </label>
-                <button type="submit" class="site-btn">Subscribe</button>
-            </form>
-        </div>
     </div>
     <!-- Humberger End -->

@@ -9,7 +9,10 @@ let date_times = ['input[name=start]'];
 let my_url = location.protocol + '//' + location.host + location.pathname;
 var target;
 // Helper functions
-function my_datatable_build(path, id_elem, day = '') {
+
+// POTEVO ASSEGNARE DIRETTAMENTE IL VALORE DI day = ''
+// QUI MA INTERNET EXPLORER NON è COMPATIBILE
+function my_datatable_build(path, id_elem, day) {
     //console.log(path, "path");
     //console.log(id_elem, "id_elem");
     var elem = $('#' + id_elem);
@@ -116,8 +119,8 @@ function store_item(source, data, multipart) {
             data: data,
             cache: false,
             processData: false,
-            contentType: "multipart/form-data;charset=UTF-8",
-            //contentType: false,
+            //contentType: "multipart/form-data;charset=UTF-8",
+            contentType: false,
             success: function (result) {
                 console.log(result, "result store");
                 var res = JSON.parse(result);
@@ -178,7 +181,7 @@ function destroyDT(id_elem) {
 }
 
 // MANAGEMENT PROGRAMMAZIONI
-my_datatable_build(my_url, table_id);
+my_datatable_build(my_url, table_id, '');
 // EDIT MODAL SHOW
 $(document).on('click', '._edit', function (event) {
     event.preventDefault();

@@ -31,7 +31,7 @@
                                 
                                 <!-- FASCIA ORARIA SELECTOR -->
                                 <div class="time-selector">
-                                    <a href="?day=${day}&fascia=1<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==1)>active</#if>" href="#">
+                                    <a href="?day=${day}&fascia=1<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==1)>active</#if>">
                                         <div class="fascia_icon">
                                             <i class="fa fa-coffee" aria-hidden="true"></i>
                                         </div>
@@ -39,15 +39,15 @@
                                             Mattina
                                         </div>
                                     </a>
-                                    <a href="?day=${day}&fascia=2<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==2)>active</#if>" href="#">
+                                    <a href="?day=${day}&fascia=2<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==2)>active</#if>">
                                         <div class="fascia_icon">
                                             <i class="fa fa-sun-o" aria-hidden="true"></i>
                                         </div>
                                         <div class="fascia_name">
                                             Pomeriggio
-                                        </div>
+                                        </div> 
                                     </a>
-                                    <a href="?day=${day}&fascia=3<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==3)>active</#if>" href="#">
+                                    <a href="?day=${day}&fascia=3<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==3)>active</#if>">
                                         <div class="fascia_icon">
                                             <svg class="icon svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 17.45" role="img" fill="#666666">
                                                 <g>
@@ -63,7 +63,7 @@
                                             Sera
                                         </div>
                                     </a>
-                                    <a href="?day=${day}&fascia=4<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==4)>active</#if>" href="#">
+                                    <a href="?day=${day}&fascia=4<#if pagina?? >&page=${pagina}</#if>" class="fascia <#if (fascia==4)>active</#if>">
                                         <div class="fascia_icon">
                                             <i class="fa fa-moon-o" aria-hidden="true"></i>
                                         </div>
@@ -84,7 +84,7 @@
                                                 <div class="div_small_channel">
                                                     <a href="${base_path}/canale?c_key=${canale.key}">
                                                         <span class="channel_img">
-                                                            <img class="small_channel" src="${base_path}/${canale.logoRef}" alt="${canale.nome} logo"/>
+                                                            <img class="small_channel" src="${base_path}/<#if canale.logoRef??>${canale.logoRef}<#else>img/static/no-image.png</#if>" alt="${canale.nome} logo"/>
                                                         </span>
                                                         <span class="channel_name">${canale.nome}</span>
                                                     </a>

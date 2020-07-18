@@ -14,6 +14,8 @@ import freemarker.template.Template;
 import freemarker.template.TemplateDateModel;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -130,6 +132,14 @@ public class TemplateResult {
             }
             //associamo i dati al template e lo mandiamo in output
             t.process(localDataModel, out);
+            
+            
+            try ( // PER VALIDAZIONE HTML
+                    Writer fileWriter = new FileWriter(new File("to_validate.html"))) {
+                t.process(localDataModel, fileWriter);
+            }
+            
+            
         } catch (IOException e) {
             throw new TemplateManagerException("Template error: " + e.getMessage(), e);
         } catch (TemplateException e) {

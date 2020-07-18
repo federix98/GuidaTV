@@ -378,4 +378,15 @@ public class UtilityMethods {
         }
         results.removeAll(toRemove);
     }
+    
+    /**
+     * Filtra le programmazioni in base all'utente
+     * @param result
+     * @param user 
+     * @return Programmazione 
+     */
+    public static Programmazione filterResults(Programmazione result, Utente user) {
+        if(result.getProgramma().getClassificazione().getMinAge() > user.getAge()) return null;
+        return result;
+    }
 }

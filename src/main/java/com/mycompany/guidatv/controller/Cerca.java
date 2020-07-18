@@ -60,8 +60,9 @@ public class Cerca extends BaseController {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
-            if(request.getParameter("resize") != null) action_resize(request, response);
-            else action_default(request, response);
+            //if(request.getParameter("resize") != null) action_resize(request, response);
+            //else 
+            action_default(request, response);
             
         } catch (DataException | TemplateManagerException| IOException ex) {
             request.setAttribute("exception", ex);
@@ -115,7 +116,7 @@ public class Cerca extends BaseController {
             // CREO UNA QUERY STRING DAI PARAMETRI ANALIZZATI
             // Per motivi di sicurezza non salvo direttamente l'input dell'utente (querystring) nel DB
             String titolo_query = "titolo=" + URLEncoder.encode(titolo, "UTF-8");
-            String genere_query = UtilityMethods.getQueryList("genere", generi);
+            String genere_query = UtilityMethods.getQueryList("generi", generi);
             String canale_query = UtilityMethods.getQueryList("canale", canali);
             String start_min_query = (start_min == null) ? "start_min=" : "start_min=" + URLEncoder.encode(start_min.toString(), "UTF-8");
             String start_max_query = (start_max == null) ? "start_max=" : "start_max=" + URLEncoder.encode(start_max.toString(), "UTF-8");
@@ -208,14 +209,18 @@ public class Cerca extends BaseController {
                 // Se sto filtrando per canale
                 for(Programma p : interessati) {
                     for(Programmazione prog : ((GuidaTVDataLayer) request.getAttribute("datalayer")).getProgrammazioneDAO().getProgrammazioneSpecifica(p.getKey(), start, end, start_min, start_max)) {
-                        if(canali.contains(prog.getCanale().getKey())) {
-                            if(programmazioni_per_canale.containsKey(prog.getCanale())) {
-                                if(!programmazioni_per_canale.get(prog.getCanale()).contains(prog)) programmazioni_per_canale.get(prog.getCanale()).add(prog);
-                            }
-                            else {
-                                List<Programmazione> toInsert = new ArrayList<>();
-                                toInsert.add(prog);
-                                programmazioni_per_canale.put(prog.getCanale(), toInsert);
+                        if((boolean) request.getAttribute("logged")) {
+                            if(UtilityMethods.filterResults(prog, UtilityMethods.getMe(request)) != null) {
+                                if(canali.contains(prog.getCanale().getKey())) {
+                                    if(programmazioni_per_canale.containsKey(prog.getCanale())) {
+                                        if(!programmazioni_per_canale.get(prog.getCanale()).contains(prog)) programmazioni_per_canale.get(prog.getCanale()).add(prog);
+                                    }
+                                    else {
+                                        List<Programmazione> toInsert = new ArrayList<>();
+                                        toInsert.add(prog);
+                                        programmazioni_per_canale.put(prog.getCanale(), toInsert);
+                                    }
+                                }
                             }
                         }
                     }
@@ -245,6 +250,8 @@ public class Cerca extends BaseController {
         //response.sendRedirect(request.getContextPath() + "/palinsesto");
     }
 
+    /*
+    Metodo di prova per la restituzione di immagini rimpicciolite
     private void action_resize(HttpServletRequest request, HttpServletResponse response) throws DataException, IOException {
         int id = SecurityLayer.checkNumeric(request.getParameter("id"));
         String img_path = request.getServletContext().getRealPath(((GuidaTVDataLayer) request.getAttribute("datalayer")).getProgrammaDAO().getProgramma(id).getLinkRefImg());// + '/' + ((GuidaTVDataLayer) request.getAttribute("datalayer")).getProgrammaDAO().getProgramma(id).getLinkRefImg();
@@ -255,6 +262,6 @@ public class Cerca extends BaseController {
         request.setAttribute("contentDisposition", "inline");
         result.setResource(new File(outpath));
         result.activate(request, response);
-    }
+    }*/
     
 }

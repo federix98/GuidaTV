@@ -22,6 +22,13 @@ and open the template in the editor.
     max-width: 10em;
 }
 
+.side_logo {
+    max-width: 2em;
+}
+
+.header__top {
+    z-index: 10 !important;
+}
 
 
 .div_small_channel {
@@ -456,11 +463,11 @@ and open the template in the editor.
     overflow: hidden;
 }
 
-_search a:hover {
+_search.nojs a:hover {
     display: none !important;
 }
 
-._search a:hover + .search_container, .search_container:hover{
+._search.nojs a:hover + .search_container, .search_container:hover{
     opacity: 1;
     border: 0.1em solid #f4952f;
     -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
@@ -472,11 +479,27 @@ _search a:hover {
 }
 
 .icon_search_container {
+    margin-top: 2em;
     text-align: center;
     padding: 2em;
 }
 
+/* RICERCA JS */
 
+
+.search_js div{
+    height: 100%;
+}
+
+.search_js .search_container {
+    opacity: 1;
+    padding: 2em;
+    max-height: 100%;
+    border: 0.1em solid #f4952f;
+    -webkit-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px 1px rgba(0,0,0,0.75);
+}
 
 /**
 * PROFILE

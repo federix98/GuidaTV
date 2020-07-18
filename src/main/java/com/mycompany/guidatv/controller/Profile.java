@@ -18,7 +18,9 @@ import com.mycompany.guidatv.result.TemplateManagerException;
 import com.mycompany.guidatv.result.TemplateResult;
 import com.mycompany.guidatv.utility.SecurityLayer;
 import com.mycompany.guidatv.utility.UtilityMethods;
+import com.mycompany.guidatv.utility.Validator;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,6 +62,9 @@ public class Profile extends BaseController {
                     if(request.getParameter("submit") != null) {
                         //UtilityMethods.debugConsole(this.getClass(), "action_sendEmail", "email");
                         action_updatePreferences(request, response);
+                    }
+                    else if(request.getParameter("data_nascita") != null) {
+                        action_updateInfo(request, response);
                     }
                     else {
                         //UtilityMethods.debugConsole(this.getClass(), "action_sendEmail", "default");
@@ -174,10 +179,46 @@ public class Profile extends BaseController {
         
         
         if(!valid) request.setAttribute("error", error);
+        else request.setAttribute("message", "Preferences updated successfully");
         action_default(request, response);
     }
 
     private void action_redirectConfirm(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("confirmEmail");
+    }
+
+    private void action_updateInfo(HttpServletRequest request, HttpServletResponse response) throws DataException, TemplateManagerException {
+        
+        
+        boolean valid = true;
+        LocalDate newDate = null;
+        String error = "";
+        
+        try{
+            newDate = (LocalDate) Validator.validate(request.getParameter("data_nascita"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.DATE)) , "data di nascita");
+            
+            if(newDate == null) {
+                valid = false;
+                error = "Invalid data";
+            }
+            else {
+                UtenteProxy me = (UtenteProxy) UtilityMethods.getMe(request);
+                me.setDataNascita(newDate);
+                ((GuidaTVDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(me);
+            }
+
+
+
+            if(!valid) request.setAttribute("error", error);
+            else request.setAttribute("message", "Info updated successfully");
+            action_default(request, response);
+
+        } catch(DataException | TemplateManagerException e) {
+            valid = false;
+            error = "Invalid data";
+            action_default(request, response);
+        }
+        
+        
     }
 }

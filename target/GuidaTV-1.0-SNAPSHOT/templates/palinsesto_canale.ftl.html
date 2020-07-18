@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center canale_head">
                     <div class="col-sm-2 text-center">
-                        <img src="${canale.logoRef}" alt="Logo canale ${canale.nome}">
+                        <img src="${base_path}/<#if canale.logoRef??>${canale.logoRef}<#else>img/static/no-image.png</#if>" alt="Logo canale ${canale.nome}">
                     </div>
                     <div class="col-sm-4">
                         <h5 class="card-title">${canale.nome}</h5>
@@ -40,9 +40,9 @@
                     </div>
                 </div>
                 <div class="time-selector time-selector-canale">
-                    <a href="?fascia=0&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==0)>active</#if>" href="#">
+                    <a href="?fascia=0&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==0)>active</#if>">
                         <div class="fascia_icon">
-                            <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.13 23.83" role="img" fill="#666666" aria-labelledby="time_all_svg_title time_all_svg_desc">
+                            <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.13 23.83" role="img" fill="#666666">
                                 <g>
                                     <path d="M5.67,20.48l1.69-1.7A8.16,8.16,0,1,1,20,10.69a6.74,6.74,0,0,1,.38.9L23,7.64A11.91,11.91,0,1,0,5.67,22.05Z"></path>
                                     <path d="M18.07,23.83H8.67v-2L12,18.44q1.5-1.54,2-2.13a4.66,4.66,0,0,0,.66-1.1,2.8,2.8,0,0,0,.2-1A1.53,1.53,0,0,0,14.43,13a1.73,1.73,0,0,0-1.19-.4,3.43,3.43,0,0,0-1.52.36,7.83,7.83,0,0,0-1.54,1L8.63,12.11a10.08,10.08,0,0,1,1.65-1.2,6.09,6.09,0,0,1,1.43-.54,7.35,7.35,0,0,1,1.73-.19,5.13,5.13,0,0,1,2.23.46,3.55,3.55,0,0,1,1.5,1.29,3.42,3.42,0,0,1,.53,1.89,4.64,4.64,0,0,1-.33,1.74,6.7,6.7,0,0,1-1,1.67,24.7,24.7,0,0,1-2.42,2.44l-1.73,1.63v.13h5.86Z"></path>
@@ -54,7 +54,7 @@
                             Tutto il giorno
                         </div>
                     </a>
-                    <a href="?fascia=1&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==1)>active</#if>" href="#">
+                    <a href="?fascia=1&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==1)>active</#if>">
                         <div class="fascia_icon">
                             <i class="fa fa-coffee" aria-hidden="true"></i>
                         </div>
@@ -62,7 +62,7 @@
                             Mattina
                         </div>
                     </a>
-                    <a href="?fascia=2&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==2)>active</#if>" href="#">
+                    <a href="?fascia=2&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==2)>active</#if>">
                         <div class="fascia_icon">
                             <i class="fa fa-sun-o" aria-hidden="true"></i>
                         </div>
@@ -70,7 +70,7 @@
                             Pomeriggio
                         </div>
                     </a>
-                    <a href="?fascia=3&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==3)>active</#if>" href="#">
+                    <a href="?fascia=3&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==3)>active</#if>">
                         <div class="fascia_icon">
                             <svg class="icon svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 17.45" role="img" fill="#666666">
                                 <g>
@@ -86,7 +86,7 @@
                             Sera
                         </div>
                     </a>
-                    <a href="?fascia=4&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==4)>active</#if>" href="#">
+                    <a href="?fascia=4&c_key=${canale.key}<#if day?? >&day=${day}</#if>" class="fascia <#if (fascia==4)>active</#if>">
                         <div class="fascia_icon">
                             <i class="fa fa-moon-o" aria-hidden="true"></i>
                         </div>
@@ -102,32 +102,6 @@
                     <#include "shared/lista_programmi.ftl.html">
                 </div>
             </div>
-            <!--
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="about__pic__item__medium">
-                        <h3><small>Canale </small>${canale.nome} (Numero ${canale.numero})</h3>
-                        <img src="${canale.logoRef}" alt="Logo Canale">
-                        
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="about__right__text">
-                        
-                        <h3>Programmazione del giorno <b>${day}</b></h3>
-                        <p>Di seguito sono elencati tutti i programmi presenti su <b>${canale.nome}</b> il giorno <b>${day}</b>.</p>
-
-                        <#include "shared/lista_programmi.ftl.html">
-
-                        <div class="about__right__text__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>

@@ -14,20 +14,19 @@
                             </div>
                             
                             
-                            <#list canali_in_onda as item>
+                            <#list current_prog as canale, programmazione>
                                 
                                 <div class="categories__list__post__item current_item">
-                                    <#if item.programmazioneCorrente??>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4">
                                             <div class="categories__post__item__pic" >
                                                 <div class="channel_logo">
                                                     <div class="div_small_channel">
-                                                        <a href="${base_path}/canale?c_key=${item.key}">
+                                                        <a href="${base_path}/canale?c_key=${canale.key}">
                                                             <span class="channel_img">
-                                                                <img class="small_channel" src="${base_path}/${item.logoRef}" alt="${item.nome} logo"/>
+                                                                <img class="small_channel" src="${base_path}/<#if canale.logoRef??>${canale.logoRef}<#else>img/static/no-image.png</#if>" alt="${canale.nome} logo"/>
                                                             </span>
-                                                            <span class="channel_name">${item.nome}</span>
+                                                            <span class="channel_name">${canale.nome}</span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -35,33 +34,34 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-9 col-md-8">
+                                            <#if programmazione??>
                                             <div class="categories__post__item__text">
-
-                                                <h3><a class="text-truncate" href="${base_path}/programma?p_key=${item.programmazioneCorrente.programma.key}">${item.programmazioneCorrente.programma.nome}</a></h3>
+                                                <h3><a class="text-truncate" href="${base_path}/programma?p_key=${programmazione.programma.key}">${programmazione.programma.nome}</a></h3>
                                                 <div class="in_onda">IN ONDA</div>
-                                                <div class="classificazione_badge">${item.programmazioneCorrente.programma.classificazione.nome}</div>
+                                                <div class="classificazione_badge">${programmazione.programma.classificazione.nome}</div>
                                                 <ul class="post__widget">
-                                                    <li><span class="post__label">${item.programmazioneCorrente.date}</span></li>
-                                                    <li>Ore ${item.programmazioneCorrente.time}</li>
-                                                    <li>${item.programmazioneCorrente.durata} min</li>
+                                                    <li><span class="post__label">${programmazione.date}</span></li>
+                                                    <li>Ore ${programmazione.time}</li>
+                                                    <li>${programmazione.durata} min</li>
                                                 </ul>
-                                                <p class="text-truncate">${item.programmazioneCorrente.programma.descrizione}</p>
+                                                <p class="text-truncate">${programmazione.programma.descrizione}</p>
                                                 
                                                 <div class="prog_img text-truncate">
-                                                    <img class="program_image" src="${item.programmazioneCorrente.programma.linkRefImg}" alt="Program image"/>
+                                                    <img class="program_image" src="${base_path}/<#if programmazione.programma.linkRefImg??>${programmazione.programma.linkRefImg}<#else>img/static/no-image.png</#if>" alt="Program image"/>
                                                     <div class="white_shadow"></div>
                                                 </div>
                                             </div>
-                                            
+                                            <#else>
+                                            <p>Nessuna programmazione presente</p>
+                                            </#if>
                                             
                                         </div>
                                     </div>
-                                    <#else>
-                                        Nessuna programmazione in onda su ${item.nome}
-                                    </#if>
                                 </div>
                             <#else>
-                                Nessun canale presente
+                            <div class="container">
+                                <p>Nessuna programmazione in onda</p>
+                            </div>
                             </#list>
                             
                             <div class="row">

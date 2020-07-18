@@ -8,11 +8,17 @@ package com.mycompany.guidatv.controller;
 import com.mycompany.guidatv.data.DataException;
 import com.mycompany.guidatv.data.dao.GuidaTVDataLayer;
 import com.mycompany.guidatv.data.model.interfaces.Canale;
+import com.mycompany.guidatv.data.model.interfaces.Programmazione;
 import com.mycompany.guidatv.result.FailureResult;
 import com.mycompany.guidatv.result.TemplateManagerException;
 import com.mycompany.guidatv.result.TemplateResult;
 import com.mycompany.guidatv.utility.SecurityLayer;
+import com.mycompany.guidatv.utility.UtilityMethods;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -79,9 +85,26 @@ public class Home extends BaseController {
             TemplateResult results = new TemplateResult(getServletContext());
             List<Canale> canali = ((GuidaTVDataLayer) request.getAttribute("datalayer")).getCanaleDAO().getListaCanali(page, elements);
             totale_canali = ((GuidaTVDataLayer) request.getAttribute("datalayer")).getCanaleDAO().getNumeroCanali();
-            request.setAttribute("canali_in_onda", canali);
+            Map<Canale, Programmazione> current = new TreeMap();
+            for(Canale c : canali) {
+                // FILTRAGGIO IN BASE ALLA CLASSIFICAZIONE
+                Programmazione programmazione = c.getProgrammazioneCorrente();
+                if(programmazione != null) {
+                    if((boolean) request.getAttribute("logged")) {
+                        if(UtilityMethods.filterResults(programmazione, UtilityMethods.getMe(request)) != null) {
+                            current.put(c, programmazione);
+                        }
+                    }
+                    else {
+                        current.put(c, programmazione);
+                    }
+                }
+            }
+            
+            
             request.setAttribute("numero_pagine", (int)(Math.ceil(totale_canali / elements)));
             request.setAttribute("pagina", page);
+            request.setAttribute("current_prog", current);
             results.activate("current.ftl.html", request, response);
         } catch (DataException ex) {
             request.setAttribute("message", "Data access exception: " + ex.getMessage());

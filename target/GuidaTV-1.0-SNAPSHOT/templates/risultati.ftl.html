@@ -23,7 +23,7 @@
                                         <div class="categories__post__item__pic">
                                             <div class="channel_logo">
                                                 <div class="div_small_channel">
-                                                    <a href="${base_path}/canale?c_key=${canale.key}">
+                                                    <a href="${base_path}/<#if canale.logoRef??>${canale.logoRef}<#else>img/static/no-image.png</#if>">
                                                         <span class="channel_img">
                                                             <img class="small_channel" src="${base_path}/${canale.logoRef}" alt="${canale.nome} logo"/>
                                                         </span>
@@ -47,16 +47,6 @@
                                 Nessuna programmazione sul database
                             </#list>
                             
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="categories__pagination">
-                                        <a href="#">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <a href="#">Next</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <#include "shared/side_items.ftl.html">

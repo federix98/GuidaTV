@@ -1,6 +1,6 @@
-<div class="_search">
+<div class="_search nojs">
                             
-    <a href="#" class="primary-btn"><i class="fa fa-search search-switch"></i> Cerca nel sito</a>
+    <a href="#" id="search_btn" class="primary-btn"><i class="fa fa-search search-switch"></i> Cerca nel sito</a>
 
     <div class="search_container">
         <h2><i class="fa fa-search mr-2"></i> Cerca i tuoi programmi preferiti</h2>
@@ -37,31 +37,31 @@
             </div>
 
             <div class="form-group row">
-                <label for="searchTimeMinInput" class="col-sm-2 col-md-3 col-form-label">Ora di inizio minima</label>
+                <label for="searchTimeMinInput" class="col-sm-2 col-md-3 col-form-label">Ora di inizio minima <small>(HH:ss)</small></label>
                 <div class="col-sm-8 col-md-3">
-                    <input type="time" id="searchTimeMinInput" name="start_time_min" min="00:00" max="23:59" value="<#if startMinSearchValue??>${startMinSearchValue}</#if>">
+                    <input class="form-control" type="time" id="searchTimeMinInput" name="start_time_min" min="00:00" max="23:59" value="<#if startMinSearchValue??>${startMinSearchValue}</#if>">
                 </div>
             
-                <label for="searchTimeMaxInput" class="col-sm-2 col-md-3 col-form-label">Ora di fine massima</label>
+                <label for="searchTimeMaxInput" class="col-sm-2 col-md-3 col-form-label">Ora di fine massima <small>(HH:ss)</small></label>
                 <div class="col-sm-8 col-md-3">
-                    <input type="time" id="searchTimeMaxInput" name="start_time_max" min="00:00" max="23:59" value="<#if startMaxSearchValue??>${startMaxSearchValue}</#if>">
+                    <input class="form-control" type="time" id="searchTimeMaxInput" name="start_time_max" min="00:00" max="23:59" value="<#if startMaxSearchValue??>${startMaxSearchValue}</#if>">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="searchDateMinInput" class="col-sm-2 col-md-2 col-form-label">Dal</label>
                 <div class="col-sm-8 col-md-4">
-                    <input class="ml-2" type="date" id="searchDateMinInput" name="date_min" min="${min_date}" max="${max_date}" value="<#if dateMinSearchValue??>${dateMinSearchValue}</#if>">
+                    <input class="form-control ml-2 dateTime" type="date" id="searchDateMinInput" name="date_min" min="${min_date}" max="${max_date}" value="<#if dateMinSearchValue??>${dateMinSearchValue}</#if>">
                 </div>
                 
                 <label for="searchDateMaxInput" class="col-sm-2 col-md-2 col-form-label">Al</label>
                 <div class="col-sm-8 col-md-4">
-                    <input class="ml-2" type="date" id="searchDateMaxInput" name="date_max" min="${min_date}" max="${max_date}" value="<#if dateMaxSearchValue??>${dateMaxSearchValue}</#if>">
+                    <input class="form-control ml-2 dateTime" type="date" id="searchDateMaxInput" name="date_max" min="${min_date}" max="${max_date}" value="<#if dateMaxSearchValue??>${dateMaxSearchValue}</#if>">
                 </div>
             </div>
             <#if logged>
             <div class="form-group">
-                <label for="sign-agree-check">
+                <label>
                     <input type="checkbox" name="save" value="1">
                     <span class="checkmark"></span>
                     Salva i risultati della mia ricerca per l'email giornaliera

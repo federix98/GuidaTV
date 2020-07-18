@@ -40,17 +40,6 @@
                             <#if (programmazione_serie?has_content)>
                                 <p>Serie: <b>Si</b> (Stagione ${programma.stagione} Episodio ${programma.episodio})</p>
                                 <p>Programmazione della serie <b>${programma.nome}</b> nell'ultimo mese</p>
-                                <#list programmazione_serie as programmazione>
-                                <p>
-                                    <a href="${base_path}/programma?p_key=${programmazione.programma.key}">${programmazione.programma.nome} Stagione ${programmazione.programma.stagione} Episodio ${programmazione.programma.episodio}</a> 
-                                    <i class="fa fa-film ml-2 mr-2"></i>  
-                                    <a href="${base_path}/canale?c_key=${programmazione.canale.key}" title="${programmazione.canale.nome}">
-                                        <img class="channel_img_mini ml-2 mr-2" src="${programmazione.canale.logoRef}" alt="Immgaine canale" />
-                                    </a> 
-                                    <i class="fa fa-caret-right ml-2 mr-2"></i> 
-                                    ${programmazione.date} ${programmazione.time} / ${programmazione.endTime}
-                                </p>
-                                </#list>
                                 
                             <#else>
                                 <p>Serie: <b>No</b></p>
@@ -68,6 +57,22 @@
                             </div>
                     </div>
 
+                  </div>
+                  <div class="container mt-3">
+                      <#if (programmazione_serie?has_content)>
+                      <h4>Programmazione della serie <b>${programma.nome}</b> nell'ultimo mese</h4><br/>
+                            <#list programmazione_serie as programmazione>
+                            <p>
+                                <a href="${base_path}/programma?p_key=${programmazione.programma.key}">${programmazione.programma.nome} Stagione ${programmazione.programma.stagione} Episodio ${programmazione.programma.episodio}</a> 
+                                <i class="fa fa-film ml-2 mr-2"></i>  
+                                <a href="${base_path}/canale?c_key=${programmazione.canale.key}" title="${programmazione.canale.nome}">
+                                    <img class="channel_img_mini ml-2 mr-2" src="${programmazione.canale.logoRef}" alt="Immgaine canale" />
+                                </a> 
+                                <i class="fa fa-caret-right ml-2 mr-2"></i> 
+                                ${programmazione.date} ${programmazione.time} / ${programmazione.endTime}
+                            </p>
+                            </#list>
+                        </#if>
                   </div>
                   <!-- /.row -->
 

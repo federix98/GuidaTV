@@ -12,11 +12,7 @@ package com.mycompany.guidatv.data;
  * 
  * L'interfaccia DataItem viene utilizzata per implementare
  * una classe (DataItemImpl) che sarà ereditata da tutti gli oggetti del model
- * e conterrà i metodi che condividono tutti essi. Ovvero
- * Getter e Setter della chiave e della versione. 
- * Viene definita utilizzando i generics in modo che 
- * per ogni oggetto del model posso definire uno specifico
- * tipo di chiave.
+ * e conterrà i metodi che condividono tutti essi. 
  */
 public interface DataItem<KT> extends Comparable {
     

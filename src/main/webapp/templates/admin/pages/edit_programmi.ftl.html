@@ -24,27 +24,6 @@
             </tr>
         </thead>
         <tbody>
-            <#list programmi_admin as programma>
-            <tr>
-                <td>${programma.key}</td>
-                <td>${programma.nome}</td>
-                <td>${programma.descrizione}</td>
-                <td>${programma.linkRefImg}</td>
-                <td>${programma.linkRefDetails}</td>
-                <td>${programma.idSerie}</td>
-                <td>${programma.stagione}</td>
-                <td>${programma.episodio}</td>
-                <td>${programma.durata}</td>
-                <td>#${programma.classificazione.key} : ${programma.classificazione.nome}</td>
-                <td>#${programma.genere.key} : ${programma.genere.nome}</td>
-                <td>
-                    <div class="btn-group btn-group-sm">
-                        <a href="${base_path}/admin/programmi?edit=true&data_id=${programma.key}" class="btn btn-warning _edit" data-id="${programma.key}"><i class="fas fa-pencil-alt" aria-hidden="true" data-toggle="tooltip" title="Edit"></i></a>
-                        <a href="${base_path}/admin/programmi?delete=true&data_id=${programma.key}" class="btn btn-danger _delete" data-id="${programma.key}"><i class="fas fa-trash" aria-hidden="true" data-toggle="tooltip" title="Delete"></i></a>
-                    </div>
-                </td>
-            </tr>
-            </#list>
         </tbody>
         <tfoot>
             <tr>

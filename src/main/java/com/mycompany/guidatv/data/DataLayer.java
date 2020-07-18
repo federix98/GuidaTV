@@ -15,9 +15,7 @@ import javax.sql.DataSource;
  *
  * @author Federico Di Menna
  * 
- * Implemento autocloseable per scrivere il metodo close
- * in modo che posso utilizzare gli oggetti DataLayer
- * con il try with resources
+ * AutoCloseable server per try with resource
  */
 public class DataLayer implements AutoCloseable {
     
