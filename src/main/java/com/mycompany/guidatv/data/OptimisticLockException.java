@@ -1,5 +1,10 @@
 package com.mycompany.guidatv.data;
 
+/**
+ *
+ * @author Federico Di Menna
+ * 
+ */
 public class OptimisticLockException extends DataException {
 
     private DataItem item;

@@ -78,3 +78,7 @@ and open the template in the editor.
 #forErrors {
     text-transform: uppercase;
 }
+
+.table-responsive {
+    padding-bottom: 8em !important;
+}

@@ -20,16 +20,16 @@
             </div>
             
             <div class="card">
-                <div class="card-header d-flex align-items-center canale_head">
+                <div class="card-header row align-items-center canale_head">
                     <div class="col-sm-2 text-center">
                         <img src="${base_path}/<#if canale.logoRef??>${canale.logoRef}<#else>img/static/no-image.png</#if>" alt="Logo canale ${canale.nome}">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-12 col-sm-4">
                         <h5 class="card-title">${canale.nome}</h5>
                         <p class="card-text">Disponibile sul numero ${canale.numero}</p>
                         
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-12 col-sm-6">
                         <form action="canale" method="GET">
                             <div class="form-group d-flex justify-content-between">    
                                 <input type="text" class="form-control dateTime align-self-center flex-fill w-auto" required="required" name="day" placeholder="yyyy-mm-dd" value="${day}"/>

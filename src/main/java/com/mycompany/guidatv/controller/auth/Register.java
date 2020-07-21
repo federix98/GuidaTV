@@ -128,7 +128,7 @@ public class Register extends BaseController {
                 me.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
                 me.setEmail(email);
                 me.setDataNascita(data_nascita);
-                me.setRuolo(((GuidaTVDataLayer) request.getAttribute("datalayer")).getRuoloDAO().getRuolo(1));
+                me.setRuolo(((GuidaTVDataLayer) request.getAttribute("datalayer")).getRuoloDAO().getRuolo(2));
                 me.setToken(UtilityMethods.generateNewToken(((GuidaTVDataLayer) request.getAttribute("datalayer"))));
                 me.setExpirationDate(LocalDate.now().plusDays(1));
                 ((GuidaTVDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(me);

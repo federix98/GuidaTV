@@ -19,6 +19,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -163,7 +166,7 @@ public class UtilityMethods {
 
     }
 
-    public static Map<String, String> getQueryMap(String query) {
+    public static Map<String, String> getQueryMap(String query) throws UnsupportedEncodingException {
         String[] params = query.split("&");
         Map<String, String> map = new HashMap<>();
         for (String param : params) {
@@ -171,7 +174,7 @@ public class UtilityMethods {
             String name = p[0];
             if (p.length > 1) {
                 String value = p[1];
-                map.put(name, value);
+                map.put(name, URLDecoder.decode(value, "UTF-8"));
             }
         }
         return map;

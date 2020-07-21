@@ -1398,6 +1398,7 @@ ol {
 	display: inline-block;
 	background: #f2f2f2;
 	color: #444444;
+        margin: .1em !important;
 	font-size: 16px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -3119,6 +3120,11 @@ ol {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+    
+    .categories__list__post__item .categories__post__item__text {
+	text-align: center;
+       }
+
 	.single-post__social__item {
 		position: relative;
 		top: 0;

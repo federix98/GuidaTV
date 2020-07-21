@@ -23,13 +23,13 @@ public class EmailSchedule implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        //scheduler = Executors.newSingleThreadScheduledExecutor();
-        //scheduler.scheduleAtFixedRate(new EmailTask(), 0, 1, TimeUnit.DAYS);
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new EmailTask(), 0, 1, TimeUnit.DAYS);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
-        //scheduler.shutdownNow();
+        scheduler.shutdownNow();
         
     }
 

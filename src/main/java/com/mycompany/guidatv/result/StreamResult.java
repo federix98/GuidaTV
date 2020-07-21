@@ -1,13 +1,3 @@
-/*
- * StreamResult.java
- * 
- * Questa classe permette di inviare file locali e altri stream al browser sotto forma
- * di oggetti da scaricare (da non renderizzare nel browser)
- * 
- * This class supports the transmission of files and binary streams to the browser
- * (as downloadable files)
- * 
- */
 package com.mycompany.guidatv.result;
 
 import java.io.File;
@@ -23,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Giuseppe Della Penna
+ * @author Federico Di Menna
+ * 
+ * Ripreso da esempio fornito come materiale
  */
 public class StreamResult {
 
@@ -67,8 +59,6 @@ public class StreamResult {
         OutputStream out = null;
         if (resource != null) {
             try {
-                //disabilitiamo tutte le forme di caching...
-                //disable caching...
                 response.setHeader("Pragma", "");
                 response.setHeader("Cache-Control", "");
 
@@ -90,8 +80,6 @@ public class StreamResult {
                 contentDisposition += "; filename=\"" + this.resourceName + "\"";
                 response.setHeader("Content-Disposition", contentDisposition);
 
-                //copiamo lo stream in output
-                //copy the stream to the output
                 out = response.getOutputStream();
                 byte[] buffer = new byte[1024];
                 int read;
@@ -104,8 +92,6 @@ public class StreamResult {
                         out.close();
                     }
                 } catch (IOException ex) {
-                    //ingoriamo altri errori nel finally
-                    //ignore errors in finally clause
                 }
             }
         }

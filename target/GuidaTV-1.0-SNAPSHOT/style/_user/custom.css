@@ -509,7 +509,45 @@ _search.nojs a:hover {
     width: auto !important; 
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
+    
+    .channel_img {
+        width: 3em;
+        height: 3em;
+    }
+    
+    .program_img_det {
+        display: none;
+    }
+    
+    .time {
+        font-size: .8em;
+    }
+    
+    .fascia_name {
+        font-size: .5em;
+    }
+    
+    .detail_container h1 {
+        font-size: 3em;
+    }
+    
+    .breadcrumb__text h2, .search_container h2 {
+        font-size: 1.5em;
+    }
+    
+    .categories__list__post__item .categories__post__item__pic {
+        margin-bottom: 2px;
+        height: auto;
+    }
+    
+    .classificazione_badge {
+        display: none;
+    }
+    
+    .contact__text {
+        text-align: center;
+    }
 }
 
 

@@ -28,7 +28,7 @@
                   <div class="row">
 
                     <div class="col-md-8">
-                      <img class="img-fluid" src="${programma.linkRefImg}" alt="Immagine Programma">
+                      <img class="img-fluid" src="${base_path}/<#if programma.linkRefImg??>${programma.linkRefImg}<#else>img/static/no-image.png</#if>" alt="Immagine Programma">
                     </div>
 
                     <div class="col-md-4 about__right__text">
@@ -62,15 +62,17 @@
                       <#if (programmazione_serie?has_content)>
                       <h4>Programmazione della serie <b>${programma.nome}</b> nell'ultimo mese</h4><br/>
                             <#list programmazione_serie as programmazione>
+                            <#if programmazione??>
                             <p>
                                 <a href="${base_path}/programma?p_key=${programmazione.programma.key}">${programmazione.programma.nome} Stagione ${programmazione.programma.stagione} Episodio ${programmazione.programma.episodio}</a> 
                                 <i class="fa fa-film ml-2 mr-2"></i>  
                                 <a href="${base_path}/canale?c_key=${programmazione.canale.key}" title="${programmazione.canale.nome}">
-                                    <img class="channel_img_mini ml-2 mr-2" src="${programmazione.canale.logoRef}" alt="Immgaine canale" />
+                                    <img class="channel_img_mini ml-2 mr-2" src="${base_path}/<#if programmazione.canale.logoRef??>${programmazione.canale.logoRef}<#else>img/static/no-image.png</#if>" alt="Immgaine canale" />
                                 </a> 
                                 <i class="fa fa-caret-right ml-2 mr-2"></i> 
                                 ${programmazione.date} ${programmazione.time} / ${programmazione.endTime}
                             </p>
+                            </#if>
                             </#list>
                         </#if>
                   </div>
@@ -84,7 +86,7 @@
                       <#list related as prog>
                         <div class="col-md-3 col-sm-6 mb-4">
                             <a href="${base_path}/programma?p_key=${prog.key}">
-                                <img class="img-fluid" src="${prog.linkRefImg}" alt="Immagine Programma">
+                                <img class="img-fluid" src="${base_path}/<#if prog.linkRefImg??>${prog.linkRefImg}<#else>img/static/no-image.png</#if>" alt="Immagine Programma">
                             </a>
                         </div>
                       <#else>

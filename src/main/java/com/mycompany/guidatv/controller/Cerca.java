@@ -88,8 +88,7 @@ public class Cerca extends BaseController {
         
         // VALIDAZIONE CAMPI
         titolo = (String) Validator.validate(request.getParameter("titolo"), new ArrayList<>(Arrays.asList(Validator.STRING_QUERY_PARAMETER)), "titolo");
-        // UtilityMethods.debugConsole(this.getClass(), "action_default", "titolo: " + titolo);
-        if(request.getParameter("titolo") != null && !request.getParameter("titolo").isEmpty()) titolo = SecurityLayer.removeSpecialChars(request.getParameter("titolo"));
+        //UtilityMethods.debugConsole(this.getClass(), "action_default", "titolo: " + titolo);
         if(request.getParameterValues("generi") != null && !request.getParameter("generi").isEmpty()) {
             generi = new ArrayList<>();
             for( String g : request.getParameterValues("generi")) {
