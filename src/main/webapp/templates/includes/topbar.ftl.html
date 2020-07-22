@@ -17,7 +17,7 @@
                                 <#if logged>
                                     <li class="dropdown <#if area == 3>active</#if>"><a href="#">Me</a>
                                         <ul class="dropdown__menu">
-                                            <#if admin_session??><li><a href="${base_path}/admin/home">Admin Panel</a></li></#if>
+                                            <#if admin_session == true><li><a href="${base_path}/admin/home">Admin Panel</a></li></#if>
                                             <li><a href="${base_path}/profile">Profile</a></li>
                                             <li><a href="${base_path}/logout">Logout</a></li>
                                         </ul>

@@ -41,10 +41,10 @@
             <label>Rif Serie</label> <br/>
             <small>Selezione la serie a cui fa riferimento la puntata, oppure seleziona 'Nessuno' se il programma non &egrave; una serie</small>
             <select class="custom-select text-uppercase" name="idSerie" id="editSerie">
-                <option class="text-uppercase" value="0">Nessuno</option>
-                <option class="text-uppercase" value="-1">-- QUESTO PROGRAMMA --</option>
+                <option class="text-uppercase" value="0" <#if item?? && item.idSerie == 0>selected="selected"</#if> >Nessuno</option>
+                <option class="text-uppercase" value="-1" <#if item?? && item.idSerie == item.key>selected="selected"</#if> >-- QUESTO PROGRAMMA --</option>
                 <#list series as serie>
-                <option class="text-uppercase" value="${serie.key}">${serie.nome}</option>
+                <option class="text-uppercase" value="${serie.key}" <#if item?? && item.idSerie == serie.key>selected="selected"</#if>>${serie.nome}</option>
                 </#list>
             </select>
             <div class="form-check">

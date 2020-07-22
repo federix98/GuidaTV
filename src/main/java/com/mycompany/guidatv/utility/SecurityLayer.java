@@ -40,6 +40,7 @@ public class SecurityLayer {
 
     private static final String STATIC_KEY = "StaticKeyGuidaTV";
     
+    
     //--------- SESSION SECURITY ------------    
     public static HttpSession checkSession(HttpServletRequest r) {
         boolean check = true;

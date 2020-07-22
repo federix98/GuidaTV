@@ -36,7 +36,7 @@ public class ProgrammazioneDAO_MySQL extends DAO implements ProgrammazioneDAO {
 
     PreparedStatement getProgrammazioneByTimestamp, getProgrammazioneByID, getCurrentProgrammazioneCanale, getProgrammazioneCorrente, getProgrammazioneByTimestampCanale;
     PreparedStatement getProgrammazioneSpecifica, getProgrammazioneSerie, getProgrammazioniPaginated;
-    PreparedStatement getNumeroProgrammazioni;
+    PreparedStatement getNumeroProgrammazioni, getLatest;
     PreparedStatement iProgrammazione, uProgrammazione, dProgrammazione;
     /**
      * Costruttore: setta il datalayer
@@ -68,6 +68,7 @@ public class ProgrammazioneDAO_MySQL extends DAO implements ProgrammazioneDAO {
             getNumeroProgrammazioni = connection.prepareStatement("SELECT COUNT(*) AS num FROM Programmazione WHERE DATE(start_time) BETWEEN ? AND ?");
             iProgrammazione = connection.prepareStatement("INSERT INTO programmazione(id_canale, id_programma, start_time, durata) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uProgrammazione = connection.prepareStatement("UPDATE programmazione SET id_canale=?, id_programma=?, start_time=?, durata=?, version=? WHERE id = ? AND version = ?");
+            getLatest = connection.prepareStatement("SELECT * FROM Programmazione ORDER BY id DESC LIMIT ?");
             
         } catch (SQLException ex) {
             Logger.getLogger("Errore nell'inizializzazione del DAO Programmazione");
@@ -92,6 +93,7 @@ public class ProgrammazioneDAO_MySQL extends DAO implements ProgrammazioneDAO {
             iProgrammazione.close();
             uProgrammazione.close();
             dProgrammazione.close();
+            getLatest.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProgrammazioneDAO_MySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -489,8 +491,23 @@ public class ProgrammazioneDAO_MySQL extends DAO implements ProgrammazioneDAO {
 
     @Override
     public List<Programmazione> getLatest(int n) throws DataException {
-        // Sfrutto il metodo getProgrammazioniPaginated per restituire le ultime n programmazioni
-        return getProgrammazioniPaginated(0, n);
+        // [OLD] Sfrutto il metodo getProgrammazioniPaginated per restituire le ultime n programmazioni
+        // return getProgrammazioniPaginated(0, n);
+        
+        List<Programmazione> p = null;
+            
+            try {
+                getLatest.setInt(1, n);
+                try (ResultSet rs = getLatest.executeQuery()) {
+                    p = new ArrayList<>();
+                    while (rs.next()) {
+                        p.add( (Programmazione) getProgrammazione(rs.getInt("id")));
+                    }
+                }
+            } catch (SQLException ex) {
+                throw new DataException("Unable to load ultime programmazioni", ex);
+            }
+        return p;
     }
     
     @Override

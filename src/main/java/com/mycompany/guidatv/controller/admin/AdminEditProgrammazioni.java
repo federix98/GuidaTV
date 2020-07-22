@@ -100,7 +100,7 @@ public class AdminEditProgrammazioni extends BaseController {
         int start = SecurityLayer.checkNumeric(request.getParameter("start"));
         int length = SecurityLayer.checkNumeric(request.getParameter("length"));
         int total = 0;
-        List<Programmazione> programmazioni = null;
+        List<Programmazione> programmazioni;
         
         LocalDate day = null;
         if(request.getParameter("day") != null) day = (LocalDate) Validator.validate(request.getParameter("day"), new ArrayList<>(Arrays.asList(Validator.DATE)), "Selected day");

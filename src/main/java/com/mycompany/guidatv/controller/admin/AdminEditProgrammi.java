@@ -23,11 +23,14 @@ import com.mycompany.guidatv.utility.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +42,6 @@ import javax.servlet.http.Part;
  *
  * @author Federico Di Menna
  */
-@WebServlet
 @MultipartConfig
 public class AdminEditProgrammi extends BaseController {
 
@@ -55,6 +57,11 @@ public class AdminEditProgrammi extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
         response.setContentType("text/html;charset=UTF-8");
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AdminEditProgrammi.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             boolean is_admin = SecurityLayer.checkAdminSession(request);
 
@@ -158,8 +165,9 @@ public class AdminEditProgrammi extends BaseController {
 
             boolean serie_update = false;
             Integer key = (Integer) Validator.validate(request.getParameter("key"), new ArrayList<>(Arrays.asList(Validator.INTEGER)), "ID");
-            String nome = (String) Validator.validate(request.getParameter("nome"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.STRING_NOT_EMPTY, Validator.STRING_WITHOUT_SPECIAL)), "nome");
-            String descrizione = (String) Validator.validate(request.getParameter("descrizione"), new ArrayList<>(Arrays.asList(Validator.STRING_WITHOUT_SPECIAL)), "descrizione");
+            String nome = (String) Validator.validate(request.getParameter("nome"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.STRING_NOT_EMPTY, Validator.STRING_QUERY_PARAMETER)), "nome");
+            //UtilityMethods.debugConsole(this.getClass(), "default", request.getCharacterEncoding() + " - " + URLDecoder.decode(request.getParameter("nome"), "UTF-8"));
+            String descrizione = (String) Validator.validate(request.getParameter("descrizione"), new ArrayList<>(Arrays.asList(Validator.STRING_QUERY_PARAMETER)), "descrizione");
             String linkRefDetails = (String) Validator.validate(request.getParameter("linkExt"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.STRING_NOT_EMPTY)), "Link Details");
             Integer durata = (Integer) Validator.validate(request.getParameter("durata"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.INTEGER)), "Durata");
             Integer id_serie = (Integer) Validator.validate(request.getParameter("idSerie"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.INTEGER)), "idSerie");

@@ -119,7 +119,6 @@ function store_item(source, data, multipart) {
             data: data,
             cache: false,
             processData: false,
-            //contentType: "multipart/form-data;charset=UTF-8",
             contentType: false,
             success: function (result) {
                 console.log(result, "result store");
@@ -167,10 +166,14 @@ function delete_item(source, data_id) {
 }
 
 function setDateTimeCheck() {
-    $(".dateTime").dateTimePicker({
-        mode: 'dateTime',
-        format: 'yyyy/MM/dd HH:mm:ss'
+    
+    $(".dateTime").each( function( index, element) {
+        $(element).dateTimePicker({
+            mode: 'dateTime',
+            format: 'yyyy/MM/dd HH:mm:ss'
+        });
     });
+    
     console.log('listening');
 }
 

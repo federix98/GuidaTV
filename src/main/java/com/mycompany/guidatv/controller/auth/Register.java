@@ -94,7 +94,6 @@ public class Register extends BaseController {
         
         if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirm.isEmpty() && data_nascita != null && accepted.equals("1")) {
             
-            
             // Sanitizzo tutti i campi e controllo se i campi sono validi
             username = SecurityLayer.removeSpecialChars(username);
             if(!SecurityLayer.isEmailValid(email)) {

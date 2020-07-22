@@ -23,11 +23,14 @@ import com.mycompany.guidatv.utility.Validator;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +42,6 @@ import javax.servlet.http.Part;
  *
  * @author Federico Di Menna
  */
-@WebServlet
 @MultipartConfig
 public class AdminEditCanali extends BaseController {
 
@@ -55,6 +57,11 @@ public class AdminEditCanali extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
         response.setContentType("text/html;charset=UTF-8");
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AdminEditProgrammi.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
             boolean is_admin = SecurityLayer.checkAdminSession(request);
@@ -173,7 +180,7 @@ public class AdminEditCanali extends BaseController {
         // CHECK SU TUTTI I CAMPI
         try {
             Integer key = (Integer) Validator.validate(request.getParameter("key"), new ArrayList<>(Arrays.asList(Validator.INTEGER)), "ID");
-            String nome = (String) Validator.validate(request.getParameter("nome"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.STRING_NOT_EMPTY, Validator.STRING_WITHOUT_SPECIAL)), "nome");
+            String nome = (String) Validator.validate(request.getParameter("nome"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.STRING_NOT_EMPTY, Validator.STRING_QUERY_PARAMETER)), "nome");
             Integer numero = (Integer) Validator.validate(request.getParameter("numero"), new ArrayList<>(Arrays.asList(Validator.REQUIRED, Validator.INTEGER)), "numero");
             UtilityMethods.debugConsole(this.getClass(), "action_store", "" + nome);
             Canale target;

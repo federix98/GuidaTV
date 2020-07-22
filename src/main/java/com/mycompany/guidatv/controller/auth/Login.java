@@ -15,7 +15,10 @@ import com.mycompany.guidatv.result.TemplateManagerException;
 import com.mycompany.guidatv.result.TemplateResult;
 import com.mycompany.guidatv.utility.SecurityLayer;
 import com.mycompany.guidatv.utility.UtilityMethods;
+import com.mycompany.guidatv.utility.Validator;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -90,8 +93,8 @@ public class Login extends BaseController {
     // Effettua il login e mi redireziona sul profilo
     private void action_login(HttpServletRequest request, HttpServletResponse response) throws DataException, TemplateManagerException, IOException {
         
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String email = (String) Validator.validate(request.getParameter("email"), new ArrayList<>(Arrays.asList(Validator.STRING_NOT_EMPTY, Validator.STRING_EMAIL)), "email");
+        String password = (String) request.getParameter("password");
         
         if (request.getParameter("email") != null && request.getParameter("password") != null && !email.isEmpty() && !password.isEmpty()) { 
             String my_pass = ((GuidaTVDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getPassword(email);
@@ -100,8 +103,8 @@ public class Login extends BaseController {
                 request.setAttribute("error", "Credenziali non corrette.");
                 action_default(request, response);
             }
-            UtilityMethods.debugConsole(this.getClass(), "action_login", "pass: " + my_pass + "  " + password);
-            UtilityMethods.debugConsole(this.getClass(), "action_login", "action: " + BCrypt.checkpw(password, my_pass));
+            //UtilityMethods.debugConsole(this.getClass(), "action_login", "pass: " + my_pass + "  " + password);
+            //UtilityMethods.debugConsole(this.getClass(), "action_login", "action: " + BCrypt.checkpw(password, my_pass));
             //UtilityMethods.debugConsole(this.getClass(), "action_login", "pass: " + BCrypt.hashpw("passpass", BCrypt.gensalt()));
             
             if(BCrypt.checkpw(password, my_pass)) {
